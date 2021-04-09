@@ -6,7 +6,7 @@ function [ret]=Simmdl(Model_Name,MFile_name,file_path)
 try
 	bdclose all;    
     
-	evalin('base', MFile_name23);
+	evalin('base', MFile_name);
 	simOut = sim(Model_Name)  %  Error code generation 
 	disp('Model Simulation completed successfully')	 
     ret = 0;
