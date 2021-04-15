@@ -8,11 +8,11 @@ try
     bdclose all
     
     
-	evalin('base', MFile_name);
+    evalin('base', MFile_name);
     sel_req_chks = selected_checks();
     disp(strcat('model name is: ',model_file));
     
-    load_system(model_file);   
+    load_system(model_file23);   
     
 	disp('Loading the Model & Checks...')
 
