@@ -1,4 +1,4 @@
-function [ret]=create_comparison_report(model_name,build_num)
+function [ret]=create_comparison_report(model_name,build_num,file_path)
 
 try
     tcpath   = strcat(pwd,'\testcase_MAT\');
@@ -22,7 +22,7 @@ try
             
             test_vector_file_name = strcat(('MIL_SIL_Comparison_Report_Build_Num_'),num2str(build_num),'.xlsx');
             
-            check_and_close_excel_files(pwd,test_vector_file_name);
+            check_and_close_excel_files(pwd,test_vector_file_name); %Error_Chek
             if exist(test_vector_file_name,'file')               
                 delete(test_vector_file_name);
             else
@@ -119,9 +119,13 @@ try
     else
         disp('No testcase folder present');
     end
-catch
-    ret = 0;
-    disp('Deviation report not created successfully');
+catch e
+    disp('Error While Generating Deviation report')
+    fid = fopen(file_path, 'w');
+    fprintf(fid,'%s\n',e.message);   
+    fclose(fid); 
+    ret = 1;
+    exit(1);
 end
 end
 
